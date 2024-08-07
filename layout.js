@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,28 +9,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // Example state and effect for client-side operations
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    // Set initial window width
-    setWindowWidth(window.innerWidth);
-
-    // Update window width on resize
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-
-    // Clean up event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty dependency array means this effect runs once after initial render
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {/* Example of using windowWidth */}
-        <div>Window width: {windowWidth}px</div>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
-
